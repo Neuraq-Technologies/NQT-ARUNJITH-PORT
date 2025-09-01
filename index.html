@@ -15,308 +15,627 @@
   <meta property="og:url" content="https://arunjithperambra.in/">
   <meta property="og:type" content="website">
   
+  <!-- Libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-  <link rel="icon" href="Assets/img/icon.png" type="image/png">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
-  <title>Arunjith Perambra - Self-Development Trainer</title>
-  <!-- Tailwind CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <!-- AOS CSS -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-</head>
-<style>
-  /* Custom CSS for additional responsiveness */
-  @media (max-width: 768px) {
-    .text-6xl {
-      font-size: 2.5rem; /* Adjust font size for smaller devices */
-    }
-    .text-2xl {
-      font-size: 1.25rem;
-    }
-    .flex-col {
-      flex-direction: column;
-    }
-    .space-x-4 > * + * {
-      margin-left: 0; /* Remove space between icons on small screens */
-      margin-top: 1rem; /* Add vertical space instead */
-    }
-  }
-  .social-icon {
-    font-size: 3rem; /* Adjust size as needed */
-  }
-  @media (max-width: 768px) {
-    .hero-section {
-      min-height: 100vh;
-    }
-  }
-  /* styles.css */
-/* Hero Section Background Styles */
-.hero-section {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-}
-
-.hero-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
-.hero-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color:#eff6ff;
-  z-index: 1;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .hero-section {
-    padding-top: 80px; /* Account for fixed navbar */
-    min-height: calc(100vh - 80px);
-  }
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <link rel="icon" href="Assets/img/icon.png" type="image/png">
   
-  .hero-bg img {
-    object-position: 60% center; /* Adjust focus for mobile */
-  }
-}
-</style>
-<body class="font-sans bg-gray-50">
-  <!-- Navbar -->
-  <nav class="bg-white shadow-lg fixed w-full z-10">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="#" class="text-2xl font-bold text-blue-600">Arunjith Perambra</a>
-      <div class="hidden md:flex space-x-8">
-        <a href="#about" class="text-gray-700 hover:text-blue-600">About</a>
-        <a href="#experience" class="text-gray-700 hover:text-blue-600">Experience</a>
-        <a href="#gallery" class="text-gray-700 hover:text-blue-600">Gallery</a>
-        <a href="#contact" class="text-gray-700 hover:text-blue-600">Contact</a>
-      </div>
+  <title>Arunjith Perambra - Self-Development Trainer</title>
+  
+  <!-- Styles -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="font-sans bg-gray-950 text-gray-100">
+  <!-- Background Animation -->
+  <div id="particles-js" class="fixed top-0 left-0 w-full h-full z-0"></div>
+  
+  <!-- Navigation -->
+  <nav class="glass-nav fixed w-full z-50 py-4 px-6 md:px-12 flex justify-between items-center">
+    <a href="#" class="text-2xl font-bold gold-text">Arunjith Perambra</a>
+    
+    <div class="hidden md:flex space-x-8">
+      <a href="#about" class="nav-link relative group">About</a>
+      <a href="#experience" class="nav-link relative group">Experience</a>
+      <a href="#services" class="nav-link relative group">Services</a>
+      <a href="#gallery" class="nav-link relative group">Gallery</a>
+      <a href="#testimonials" class="nav-link relative group">Testimonials</a>
+      <a href="#podcast" class="nav-link relative group">Podcast</a>
+      <a href="#contact" class="nav-link relative group">Contact</a>
+    </div>
+    
+    <div class="md:hidden text-2xl" id="mobile-menu-button">
+      <i class="fas fa-bars"></i>
     </div>
   </nav>
 
-  <head>
-    <!-- Add this line with your other head elements -->
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  
-  <!-- Updated Hero Section -->
-  <section class="hero-section">
-    <!-- Background Image -->
-    <!-- <div class="hero-bg">
-      <img src="bg1.jpg" alt="Arunjith Perambra background">
-    </div> -->
-    
-    <!-- Overlay -->
-    <div class="hero-overlay"></div>
-    
-    <!-- Content -->
-    <div class="hero-content container mx-auto text-center text-blue-600">
-      <div class="flex justify-center mb-8" data-aos="fade-up">
-        <img src="Assets\img\hero1.jpg" alt="Arunjith Perambra" class="rounded-full shadow-lg w-40 h-40 border-4 border-white">
+  <!-- Mobile Menu -->
+  <div class="mobile-menu glass-nav fixed top-0 right-0 h-full w-64 z-50 transform translate-x-full transition-transform duration-300 p-6">
+    <div class="flex justify-end mb-8">
+      <i class="fas fa-times text-2xl" id="close-menu"></i>
+    </div>
+    <div class="flex flex-col space-y-6">
+      <a href="#about" class="nav-link">About</a>
+      <a href="#experience" class="nav-link">Experience</a>
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#gallery" class="nav-link">Gallery</a>
+      <a href="#testimonials" class="nav-link">Testimonials</a>
+      <a href="#podcast" class="nav-link">Podcast</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-section min-h-screen relative flex items-center justify-center overflow-hidden pt-20">
+    <div class="absolute inset-0 z-0">
+      <div class="hero-bg-overlay absolute inset-0 bg-black opacity-60"></div>
+      <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
       </div>
-      <h1 class="text-6xl font-bold mb-4 text-white text-blue-600" data-aos="fade-up">Arunjith Perambra</h1>
-      <p class="text-2xl mb-8 text-white text-blue-500" data-aos="fade-up" data-aos-delay="200" >Empowering Individuals Through Self-Development Training</p>
-      <a href="https://wa.me/919539939239?text=Hi,%20I%20need%20your%20assistance." class="bg-blue-600 text-white px-8 py-4 rounded-full hover:bg-blue-700 text-lg" data-aos="fade-up" data-aos-delay="400">Book a Session</a>
-      <!-- Social Media Icons -->
-      <div class="mt-8 flex justify-center space-x-6" data-aos="fade-up" data-aos-delay="600">
-        <a href="https://www.linkedin.com/in/arunjith-perambra-047272281/" class="   text-blue-600text-white hover:text-blue-300 text-4xl"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://www.instagram.com/arunjith_perambra?igsh=MTBmZHUza3NwZWhnZw==" class="   text-blue-600 text-white hover:text-pink-300 text-4xl"><i class="fab fa-instagram"></i></a>
-        <a href="https://wa.me/919539939239" class="text-white hover:text-green-300 text-4xl"><i class="  text-blue-600 fab fa-whatsapp"></i></a>
+    </div>
+    
+    <div class="container mx-auto px-6 z-10 text-center">
+      <div class="flex justify-center mb-8" data-aos="fade-up">
+        <div class="relative">
+          <div class="absolute -inset-4 bg-gradient-to-r from-yellow-500 to-yellow-700 rounded-full opacity-70 blur-lg"></div>
+          <img src="Assets/img/hero1.jpg" alt="Arunjith Perambra" class="relative rounded-full shadow-2xl w-48 h-48 md:w-64 md:h-64 border-4 border-yellow-600 object-cover">
+        </div>
+      </div>
+      
+      <h1 class="text-5xl md:text-7xl font-bold mb-6 gold-gradient-text" data-aos="fade-up" data-aos-delay="200">
+        Arunjith <span class="block">Perambra</span>
+      </h1>
+      
+      <p class="text-xl md:text-2xl mb-10 text-gray-300 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="400">
+        Empowering Individuals Through Self-Development Training
+      </p>
+      
+      <div class="flex flex-col md:flex-row justify-center gap-6 mb-16" data-aos="fade-up" data-aos-delay="600">
+        <a href="https://wa.me/919539939239?text=Hi,%20I%20need%20your%20assistance." class="gold-button group relative overflow-hidden">
+          <span class="relative z-10">Book a Session</span>
+          <div class="absolute inset-0 bg-gradient-to-r from-yellow-600 to-yellow-800 transform -skew-x-12 -translate-x-full group-hover:translate-x-0 transition-transform duration-700"></div>
+        </a>
+        
+        <a href="#contact" class="border-button group relative overflow-hidden">
+          <span class="relative z-10">Get In Touch</span>
+          <div class="absolute inset-0 border border-yellow-600 transform -skew-x-12"></div>
+        </a>
+      </div>
+      
+      <div class="social-icons flex justify-center space-x-8" data-aos="fade-up" data-aos-delay="800">
+        <a href="https://www.linkedin.com/in/arunjith-perambra-047272281/" class="social-icon">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="https://www.instagram.com/arunjith_perambra?igsh=MTBmZHUza3NwZWhnZw==" class="social-icon">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://wa.me/919539939239" class="social-icon">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </div>
+    </div>
+    
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2">
+      <div class="scroll-indicator">
+        <span></span>
       </div>
     </div>
   </section>
 
-<!-- About Section -->
-<section id="about" class="py-12 md:py-20 px-4 md:px-8">
-  <div class="container mx-auto flex flex-col md:flex-row items-center">
-    <div class="md:w-1/2" data-aos="fade-right">
-      <img src="Assets\img\about2.jpg" alt="Arunjith Perambra" class="rounded-lg shadow-lg">
+  <!-- About Section -->
+  <section id="about" class="section-py">
+    <div class="container mx-auto px-6">
+      <div class="flex flex-col md:flex-row items-center gap-12">
+        <div class="md:w-1/2" data-aos="fade-right">
+          <div class="relative">
+            <div class="absolute -inset-4 bg-gradient-to-r from-yellow-500 to-yellow-700 rounded-xl opacity-30 blur-xl"></div>
+            <img src="Assets/img/about2.jpg" alt="Arunjith Perambra" class="relative rounded-xl shadow-2xl">
+          </div>
+        </div>
+        
+        <div class="md:w-1/2" data-aos="fade-left">
+          <h2 class="section-title">About Me</h2>
+          <p class="text-lg mb-6 text-gray-300">
+            Hi, I am a psychology graduate and founder of The MindQuest Academy, dedicated to empowering individuals through motivational training and mindset transformation. With leadership experience in mentoring students and conducting research, I am passionate about driving personal and organizational growth.
+          </p>
+          <p class="text-lg mb-8 text-gray-300">
+            Committed to continuous learning, I strive to make a meaningful impact in the lives of those I work with, helping them unlock their full potential and achieve their personal and professional goals.
+          </p>
+          
+          <div class="grid grid-cols-2 gap-6 mb-8">
+            <div class="flex items-center">
+              <div class="mr-4 text-yellow-500 text-2xl">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <div>
+                <h3 class="font-bold">Psychology Graduate</h3>
+                <p class="text-sm text-gray-400">Expertise in human behavior</p>
+              </div>
+            </div>
+            
+            <div class="flex items-center">
+              <div class="mr-4 text-yellow-500 text-2xl">
+                <i class="fas fa-chalkboard-teacher"></i>
+              </div>
+              <div>
+                <h3 class="font-bold">Mindset Coach</h3>
+                <p class="text-sm text-gray-400">Transforming perspectives</p>
+              </div>
+            </div>
+            
+            <div class="flex items-center">
+              <div class="mr-4 text-yellow-500 text-2xl">
+                <i class="fas fa-users"></i>
+              </div>
+              <div>
+                <h3 class="font-bold">Leadership Mentor</h3>
+                <p class="text-sm text-gray-400">Guiding future leaders</p>
+              </div>
+            </div>
+            
+            <div class="flex items-center">
+              <div class="mr-4 text-yellow-500 text-2xl">
+                <i classfas fa-brain"></i>
+              </div>
+              <div>
+                <h3 class="font-bold">Research Enthusiast</h3>
+                <p class="text-sm text-gray-400">Evidence-based approaches</p>
+              </div>
+            </div>
+          </div>
+          
+          <a href="#services" class="gold-link inline-flex items-center group">
+            Explore My Services
+            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+          </a>
+        </div>
+      </div>
     </div>
-    <div class="md:w-1/2 md:pl-12 mt-8 md:mt-0" data-aos="fade-left">
-      <h2 class="text-4xl font-bold mb-6">About Me</h2>
-      <p class="text-lg mb-6">Hi, I am a psychology graduate and founder of The MindQuest
-        Academy, dedicated to empowering individuals through
-        motivational training and mindset transformation. With
-        leadership experience in mentoring students and conducting
-        research, I am passionate about driving personal and
-        organizational growth. Committed to continuous learning, I strive
-        to make a meaningful impact</p>
-      <a href="#experience" class="text-blue-600 hover:underline">Learn More About My Services</a>
-    </div>
-  </div>
-</section>
+  </section>
 
   <!-- Experience Section -->
-  <section id="experience" class="bg-gray-100 py-20">
-    <div class="container mx-auto">
-      <h2 class="text-4xl font-bold text-center mb-12" data-aos="fade-up">My Experience</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-white p-8 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="200">
-          <img src="Assets\img\ex1.jpg" alt="Experience 1" class="rounded-lg mb-6">
-          <h3 class="text-2xl font-bold mb-4">Leadership Trainer</h3>
-          <p class="text-gray-600 mb-2">2020 - Present</p>
-          <p class="mb-4">Delivered leadership training programs to over 100 professionals, helping them enhance their leadership skills.</p>
+  <section id="experience" class="section-py bg-gray-900 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-yellow-600 rounded-full filter blur-3xl opacity-10 transform translate-x-1/2 -translate-y-1/2"></div>
+    
+    <div class="container mx-auto px-6 relative z-10">
+      <h2 class="section-title text-center" data-aos="fade-up">My Experience</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+        <div class="glass-card group" data-aos="fade-up" data-aos-delay="200">
+          <div class="relative overflow-hidden rounded-xl mb-6">
+            <img src="Assets/img/ex1.jpg" alt="Leadership Training" class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 gold-text">Leadership Trainer</h3>
+          <p class="text-gray-400 mb-2">2020 - Present</p>
+          <p class="mb-4 text-gray-300">Delivered leadership training programs to over 100 professionals, helping them enhance their leadership skills and organizational impact.</p>
+          <div class="gold-bar"></div>
         </div>
-        <div class="bg-white p-8 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="400">
-          <img src="Assets\img\ex2.jpg" alt="Experience 2" class="rounded-lg mb-6">
-          <h3 class="text-2xl font-bold mb-4">Emotional Intelligence Coach</h3>
-          <p class="text-gray-600 mb-2">2021 - Present</p>
-          <p class="mb-4">Conducted workshops on emotional intelligence, improving decision-making and relationship-building skills.</p>
+        
+        <div class="glass-card group" data-aos="fade-up" data-aos-delay="400">
+          <div class="relative overflow-hidden rounded-xl mb-6">
+            <img src="Assets/img/ex2.jpg" alt="Emotional Intelligence Coaching" class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 gold-text">Emotional Intelligence Coach</h3>
+          <p class="text-gray-400 mb-2">2021 - Present</p>
+          <p class="mb-4 text-gray-300">Conducted workshops on emotional intelligence, improving decision-making and relationship-building skills for individuals and teams.</p>
+          <div class="gold-bar"></div>
         </div>
-        <div class="bg-white p-8 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="600">
-          <img src="Assets\img\ex4.jpg" alt="Mentor Lead Experience" class="rounded-lg mb-6">
-          <h3 class="text-2xl font-bold mb-4">Academic Mentor & Team Lead - Xylem Integrated School, Calicut</h3>
-          <p class="text-gray-600 mb-2">2022 - Present</p>
-          <p class="mb-4">Managing students and mentors, fostering a structured mentoring environment, and guiding individuals toward academic and personal growth.</p>
+        
+        <div class="glass-card group" data-aos="fade-up" data-aos-delay="600">
+          <div class="relative overflow-hidden rounded-xl mb-6">
+            <img src="Assets/img/ex4.jpg" alt="Academic Mentor" class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 gold-text">Academic Mentor & Team Lead</h3>
+          <p class="text-gray-400 mb-2">2022 - Present</p>
+          <p class="mb-4 text-gray-300">Managing students and mentors at Xylem Integrated School, fostering a structured mentoring environment, and guiding academic growth.</p>
+          <div class="gold-bar"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-20 bg-black relative overflow-hidden">
+    <div class="absolute inset-0 opacity-20">
+      <div class="absolute top-0 left-0 w-72 h-72 bg-yellow-600 rounded-full filter blur-3xl"></div>
+      <div class="absolute bottom-0 right-0 w-72 h-72 bg-yellow-600 rounded-full filter blur-3xl"></div>
+    </div>
+    
+    <div class="container mx-auto px-6 relative z-10">
+      <h2 class="section-title text-center mb-16" data-aos="fade-up">Our Impact</h2>
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+          <div class="text-5xl md:text-6xl font-bold gold-text mb-3 counter" data-target="40">0</div>
+          <p class="text-gray-400 uppercase tracking-wider text-sm">Clients Trained</p>
+        </div>
+        
+        <div class="text-center" data-aos="fade-up" data-aos-delay="400">
+          <div class="text-5xl md:text-6xl font-bold gold-text mb-3 counter" data-target="6">0</div>
+          <p class="text-gray-400 uppercase tracking-wider text-sm">Workshops Conducted</p>
+        </div>
+        
+        <div class="text-center" data-aos="fade-up" data-aos-delay="600">
+          <div class="text-5xl md:text-6xl font-bold gold-text mb-3 counter" data-target="5">0</div>
+          <p class="text-gray-400 uppercase tracking-wider text-sm">Years of Experience</p>
+        </div>
+        
+        <div class="text-center" data-aos="fade-up" data-aos-delay="800">
+          <div class="text-5xl md:text-6xl font-bold gold-text mb-3 counter" data-target="100">0</div>
+          <p class="text-gray-400 uppercase tracking-wider text-sm">Lives Impacted</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="section-py">
+    <div class="container mx-auto px-6">
+      <h2 class="section-title text-center" data-aos="fade-up">Training Programs</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+        <div class="service-card group" data-aos="fade-up" data-aos-delay="200">
+          <div class="service-icon">
+            <i class="fas fa-crown"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 gold-text">Leadership Development</h3>
+          <p class="mb-6 text-gray-300">This program focuses on building leadership skills, emotional intelligence, and effective communication for organizational success.</p>
+          <ul class="mb-6 space-y-2">
+            <li class="flex items-center">
+              <i class="fas fa-check-circle text-yellow-500 mr-2"></i>
+              <span>Strategic Leadership</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-check-circle text-yellow-500 mr-2"></i>
+              <span>Team Management</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-check-circle text-yellow-500 mr-2"></i>
+              <span>Decision Making</span>
+            </li>
+          </ul>
+          <a href="https://wa.me/919539939239?text=Hi,%20I'm interested in Leadership Development program." class="gold-link inline-flex items-center group">
+            Learn More
+            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+          </a>
+        </div>
+        
+        <div class="service-card group" data-aos="fade-up" data-aos-delay="400">
+          <div class="service-icon">
+            <i class="fas fa-seedling"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 gold-text">Personal Growth</h3>
+          <p class="mb-6 text-gray-300">A comprehensive program designed to help individuals achieve personal and professional growth through mindset transformation.</p>
+          <ul class="mb-6 space-y-2">
+            <li class="flex items-center">
+              <i class="fas fa-check-circle text-yellow-500 mr-2"></i>
+              <span>Mindset Coaching</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-check-circle text-yellow-500 mr-2"></i>
+              <span>Goal Setting</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-check-circle text-yellow-500 mr-2"></i>
+              <span>Habit Formation</span>
+            </li>
+          </ul>
+          <a href="https://wa.me/919539939239?text=Hi,%20I'm interested in Personal Growth program." class="gold-link inline-flex items-center group">
+            Learn More
+            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+          </a>
+        </div>
+        
+        <div class="service-card group" data-aos="fade-up" data-aos-delay="600">
+          <div class="service-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 gold-text">Emotional Intelligence</h3>
+          <p class="mb-6 text-gray-300">Learn how to manage emotions, build stronger relationships, and improve decision-making skills through EI mastery.</p>
+          <ul class="mb-6 space-y-2">
+            <li class="flex items-center">
+              <i class="fas fa-check-circle text-yellow-500 mr-2"></i>
+              <span>Self-Awareness</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-check-circle text-yellow-500 mr-2"></i>
+              <span>Empathy Development</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-check-circle text-yellow-500 mr-2"></i>
+              <span>Relationship Management</span>
+            </li>
+          </ul>
+          <a href="https://wa.me/919539939239?text=Hi,%20I'm interested in Emotional Intelligence program." class="gold-link inline-flex items-center group">
+            Learn More
+            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Podcast Section -->
+  <section id="podcast" class="section-py bg-gray-900 relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-96 h-96 bg-yellow-600 rounded-full filter blur-3xl opacity-10 transform -translate-x-1/2 -translate-y-1/2"></div>
+    
+    <div class="container mx-auto px-6 relative z-10">
+      <h2 class="section-title text-center" data-aos="fade-up">Podcasts & Videos</h2>
+      <p class="text-center text-xl text-gray-400 max-w-3xl mx-auto mb-16" data-aos="fade-up" data-aos-delay="200">
+        Explore my latest podcasts and videos on self-development, leadership, and personal growth.
+      </p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="video-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden">
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <h3 class="text-xl font-bold mt-4 mb-2 gold-text">The Power of Mindset</h3>
+          <p class="text-gray-400">Learn how to transform your mindset for personal and professional success.</p>
+        </div>
+        
+        <div class="video-card" data-aos="fade-up" data-aos-delay="600">
+          <div class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden">
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <h3 class="text-xl font-bold mt-4 mb-2 gold-text">Leadership in Modern Times</h3>
+          <p class="text-gray-400">Exploring the essential leadership qualities needed in today's world.</p>
+        </div>
+        
+        <div class="video-card" data-aos="fade-up" data-aos-delay="800">
+          <div class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden">
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <h3 class="text-xl font-bold mt-4 mb-2 gold-text">Emotional Intelligence Mastery</h3>
+          <p class="text-gray-400">How to develop your EQ for better relationships and decision making.</p>
+        </div>
+        
+        <div class="video-card" data-aos="fade-up" data-aos-delay="1000">
+          <div class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden">
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID_4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <h3 class="text-xl font-bold mt-4 mb-2 gold-text">Overcoming Stress & Anxiety</h3>
+          <p class="text-gray-400">Practical techniques to manage stress and build mental resilience.</p>
+        </div>
+      </div>
+      
+      <div class="text-center mt-12" data-aos="fade-up">
+        <a href="https://www.youtube.com/channel/CHANNEL_ID" class="gold-button group relative overflow-hidden">
+          <span class="relative z-10">View More Content</span>
+          <div class="absolute inset-0 bg-gradient-to-r from-yellow-600 to-yellow-800 transform -skew-x-12 -translate-x-full group-hover:translate-x-0 transition-transform duration-700"></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="section-py relative overflow-hidden">
+    <div class="absolute bottom-0 right-0 w-96 h-96 bg-yellow-600 rounded-full filter blur-3xl opacity-10 transform translate-x-1/2 translate-y-1/2"></div>
+    
+    <div class="container mx-auto px-6 relative z-10">
+      <h2 class="section-title text-center" data-aos="fade-up">What People Say</h2>
+      
+      <div class="testimonial-slider mt-16">
+        <div class="testimonial-item glass-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="flex items-center mb-6">
+            <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="w-full h-full object-cover">
+            </div>
+            <div>
+              <h3 class="font-bold text-lg">Rajesh Kumar</h3>
+              <p class="text-yellow-500">CEO, Neuraq Technologies</p>
+            </div>
+          </div>
+          <p class="text-gray-300 italic">
+            "Arunjith's training at Neuraq Technologies has transformed our team. His expertise and guidance have significantly enhanced our skills and productivity. The leadership program was particularly impactful."
+          </p>
+          <div class="flex mt-4">
+            <i class="fas fa-star text-yellow-500"></i>
+            <i class="fas fa-star text-yellow-500"></i>
+            <i class="fas fa-star text-yellow-500"></i>
+            <i class="fas fa-star text-yellow-500"></i>
+            <i class="fas fa-star text-yellow-500"></i>
+          </div>
+        </div>
+        
+        <div class="testimonial-item glass-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="flex items-center mb-6">
+            <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+              <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" class="w-full h-full object-cover">
+            </div>
+            <div>
+              <h3 class="font-bold text-lg">Priya Nair</h3>
+              <p class="text-yellow-500">HR Manager, Tech Solutions</p>
+            </div>
+          </div>
+          <p class="text-gray-300 italic">
+            "The emotional intelligence workshop was eye-opening for our team. Arunjith has a unique way of connecting with participants and delivering complex concepts in an easily understandable manner."
+          </p>
+          <div class="flex mt-4">
+            <i class="fas fa-star text-yellow-500"></i>
+            <i class="fas fa-star text-yellow-500"></i>
+            <i class="fas fa-star text-yellow-500"></i>
+            <i class="fas fa-star text-yellow-500"></i>
+            <i class="fas fa-star text-yellow-500"></i>
+          </div>
+        </div>
+        
+        <div class="testimonial-item glass-card" data-aos="fade-up" data-aos-delay="600">
+          <div class="flex items-center mb-6">
+            <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+              <img src="https://randomuser.me/api/portraits/men/62.jpg" alt="Client" class="w-full h-full object-cover">
+            </div>
+            <div>
+              <h3 class="font-bold text-lg">Sanjay Menon</h3>
+              <p class="text-yellow-500">Student, Xylem Learning</p>
+            </div>
+          </div>
+          <p class="text-gray-300 italic">
+            "Arunjith sir's mentoring has completely changed my approach to studies and personal development. His sessions are always insightful and motivating. I've seen significant improvement in my focus and grades."
+          </p>
+          <div class="flex mt-4">
+            <i class="fas fa-star text-yellow-500"></i>
+            <i class="fas fa-star text-yellow-500"></i>
+            <i class="fas fa-star text-yellow-500"></i>
+            <i class="fas fa-star text-yellow-500"></i>
+            <i class="fas fa-star text-yellow-500"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section-py bg-gray-900 relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-1/2 bg-black opacity-50"></div>
+    <div class="container mx-auto px-6 relative z-10">
+      <h2 class="section-title text-center" data-aos="fade-up">Get In Touch</h2>
+      <p class="text-center text-xl text-gray-400 max-w-3xl mx-auto mb-16" data-aos="fade-up" data-aos-delay="200">
+        Ready to transform your life or organization? Reach out to discuss how we can work together.
+      </p>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div data-aos="fade-right" data-aos-delay="400">
+          <h3 class="text-2xl font-bold mb-6 gold-text">Contact Information</h3>
           
+          <div class="space-y-6">
+            <div class="flex items-start">
+              <div class="text-yellow-500 text-xl mr-4 mt-1">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div>
+                <h4 class="font-bold mb-1">Location</h4>
+                <p class="text-gray-400">Kozhikode, Kerala, India</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="text-yellow-500 text-xl mr-4 mt-1">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div>
+                <h4 class="font-bold mb-1">Email</h4>
+                <p class="text-gray-400">arunjith@mindquest.com</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="text-yellow-500 text-xl mr-4 mt-1">
+                <i class="fas fa-phone-alt"></i>
+              </div>
+              <div>
+                <h4 class="font-bold mb-1">Phone</h4>
+                <p class="text-gray-400">+91 95399 39239</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="text-yellow-500 text-xl mr-4 mt-1">
+                <i class="fas fa-clock"></i>
+              </div>
+              <div>
+                <h4 class="font-bold mb-1">Availability</h4>
+                <p class="text-gray-400">Mon - Fri: 9AM - 6PM</p>
+                <p class="text-gray-400">Weekends: By appointment</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mt-10">
+            <h3 class="text-2xl font-bold mb-6 gold-text">Follow Me</h3>
+            <div class="flex space-x-6">
+              <a href="https://www.linkedin.com/in/arunjith-perambra-047272281/" class="social-icon text-2xl">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a href="https://www.instagram.com/arunjith_perambra?igsh=MTBmZHUza3NwZWhnZw==" class="social-icon text-2xl">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="https://wa.me/919539939239" class="social-icon text-2xl">
+                <i class="fab fa-whatsapp"></i>
+              </a>
+              <a href="https://www.youtube.com/channel/CHANNEL_ID" class="social-icon text-2xl">
+                <i class="fab fa-youtube"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div data-aos="fade-left" data-aos-delay="600">
+          <form action="https://formspree.io/f/meoaqwla" method="POST" class="glass-form">
+            <div class="mb-6">
+              <label for="name" class="block text-gray-400 mb-2">Your Name</label>
+              <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
+            </div>
+            
+            <div class="mb-6">
+              <label for="email" class="block text-gray-400 mb-2">Your Email</label>
+              <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
+            </div>
+            
+            <div class="mb-6">
+              <label for="subject" class="block text-gray-400 mb-2">Subject</label>
+              <input type="text" id="subject" name="subject" required class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
+            </div>
+            
+            <div class="mb-6">
+              <label for="message" class="block text-gray-400 mb-2">Your Message</label>
+              <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"></textarea>
+            </div>
+            
+            <button type="submit" class="gold-button w-full group relative overflow-hidden">
+              <span class="relative z-10">Send Message</span>
+              <div class="absolute inset-0 bg-gradient-to-r from-yellow-600 to-yellow-800 transform -skew-x-12 -translate-x-full group-hover:translate-x-0 transition-transform duration-700"></div>
+            </button>
+          </form>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- Client Count Section -->
-  <section class="bg-blue-600 py-20">
-    <div class="container mx-auto text-center text-white">
-      <h2 class="text-4xl font-bold mb-8" data-aos="fade-up">Our Impact</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="p-6" data-aos="fade-up" data-aos-delay="200">
-          <h3 class="text-5xl font-bold mb-4">40+</h3>
-          <p class="text-xl">Clients Trained</p>
-        </div>
-        <div class="p-6" data-aos="fade-up" data-aos-delay="400">
-          <h3 class="text-5xl font-bold mb-4">6+</h3>
-          <p class="text-xl">Workshops Conducted</p>
-        </div>
-        <div class="p-6" data-aos="fade-up" data-aos-delay="600">
-          <h3 class="text-5xl font-bold mb-4">5+</h3>
-          <p class="text-xl">Years of Experience</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-<!-- Services Section -->
-<section id="services" class="py-12 md:py-20 px-4 md:px-8">
-  <div class="container mx-auto">
-    <h2 class="text-4xl font-bold text-center mb-12" data-aos="fade-up">Training Programs</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div class="bg-white p-8 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="200">
-        <h3 class="text-2xl font-bold mb-4">Leadership Development</h3>
-        <p class="mb-4">This program focuses on building leadership skills, emotional intelligence, and effective communication.</p>
-        <a href="https://wa.me/919539939239?text=Hi,%20I%20need%20your%20assistance." class="text-blue-600 hover:underline">Learn More</a>
-      </div>
-      <div class="bg-white p-8 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="400">
-        <h3 class="text-2xl font-bold mb-4">Personal Growth</h3>
-        <p class="mb-4">A comprehensive program designed to help individuals achieve personal and professional growth.</p>
-        <a href="https://wa.me/919539939239?text=Hi,%20I%20need%20your%20assistance." class="text-blue-600 hover:underline">Learn More</a>
-      </div>
-      <div class="bg-white p-8 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="600">
-        <h3 class="text-2xl font-bold mb-4">Emotional Intelligence</h3>
-        <p class="mb-4">Learn how to manage emotions, build stronger relationships, and improve decision-making skills.</p>
-        <a href="https://wa.me/919539939239?text=Hi,%20I%20need%20your%20assistance." class="text-blue-600 hover:underline">Learn More</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Gallery Section -->
-<section id="gallery" class="py-12 md:py-20 px-4 md:px-8">
-  <div class="container mx-auto">
-    <h2 class="text-4xl font-bold text-center mb-12" data-aos="fade-up">Gallery</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <video controls autoplay muted class="rounded-lg" data-aos="fade-up" data-aos-delay="400">
-        <source src="Assets\videos\vid1.mp4" type="video/mp4">
-      </video>
-      <video controls autoplay muted class="rounded-lg" data-aos="fade-up" data-aos-delay="400">
-        <source src="Assets\videos\vid4.mp4" type="video/mp4">
-      </video>
-      <video controls autoplay muted class="rounded-lg" data-aos="fade-up" data-aos-delay="400">
-        <source src="Assets\videos\vid3.mp4" type="video/mp4">
-      </video>
-      <video controls autoplay muted class="rounded-lg" data-aos="fade-up" data-aos-delay="400">
-        <source src="Assets\videos\vid2.mp4" type="video/mp4">
-      </video>
-    </div>
-  </div>
-</section>
-
-<!-- Testimonials Section -->
-<section id="testimonials" class="bg-blue-50 py-12 md:py-20 px-4 md:px-8">
-  <div class="container mx-auto">
-    <h2 class="text-4xl font-bold text-center mb-12" data-aos="fade-up">What People Say</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div class="bg-white p-8 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="200">
-        <p class="mb-4">"Arunjith's training at Neuraq Technologies has transformed our team. His expertise and guidance have significantly enhanced our skills and productivity!"</p>
-        <p class="font-bold">- Neuraq Technologies</p>
-      </div>
-      <!-- <div class="bg-white p-8 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="400">
-        <p class="mb-4">"The best self-development trainer I've ever worked with. Truly life-changing!"</p>
-        <p class="font-bold">- Jane Smith</p>
-      </div> -->
-    </div>
-  </div>
-</section>
-
-<!-- Contact Section -->
-<section id="contact" class="py-12 md:py-20 px-4 md:px-8">
-  <div class="container mx-auto">
-    <h2 class="text-4xl font-bold text-center mb-12" data-aos="fade-up">Contact Me</h2>
-    <form action="https://formspree.io/f/meoaqwla" method="POST" class="max-w-lg mx-auto" data-aos="fade-up" data-aos-delay="200">
-      <input type="text" name="name" placeholder="Your Name" class="w-full p-3 mb-4 border rounded-lg">
-      <input type="email" name="email" placeholder="Your Email" class="w-full p-3 mb-4 border rounded-lg">
-      <textarea name="message" placeholder="Your Message" class="w-full p-3 mb-4 border rounded-lg"></textarea>
-      <button type="submit" class="bg-blue-500 text-white px-4 py-2 md:px-6 md:py-3 rounded-full hover:bg-blue-700 text-sm md:text-base">
-        Send Message
-      </button>
-    </form>
-  </div>
-</section>
 
   <!-- Footer -->
-  <footer class="bg-gray-800 text-white py-12">
-    <div class="container mx-auto text-center">
-      <div class="flex justify-center space-x-6 mb-6">
-        <!-- <a href="https://www.facebook.com/share/1ETP7SCpiW/" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a> -->
-        <a href="https://wa.me/919539939239" class="text-gray-400 hover:text-white"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://www.linkedin.com/in/arunjith-perambra-047272281/" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://www.instagram.com/the_mindquest?igsh=bTkzd3cyazk3cTQx" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+  <footer class="bg-black py-12 relative z-10">
+    <div class="container mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-6 md:mb-0">
+          <a href="#" class="text-2xl font-bold gold-text">Arunjith Perambra</a>
+          <p class="text-gray-500 mt-2">Empowering through self-development</p>
+        </div>
+        
+        <div class="flex space-x-6 mb-6 md:mb-0">
+          <a href="https://www.linkedin.com/in/arunjith-perambra-047272281/" class="text-gray-400 hover:text-yellow-500 transition-colors">
+            <i class="fab fa-linkedin-in text-xl"></i>
+          </a>
+          <a href="https://www.instagram.com/arunjith_perambra?igsh=MTBmZHUza3NwZWhnZw==" class="text-gray-400 hover:text-yellow-500 transition-colors">
+            <i class="fab fa-instagram text-xl"></i>
+          </a>
+          <a href="https://wa.me/919539939239" class="text-gray-400 hover:text-yellow-500 transition-colors">
+            <i class="fab fa-whatsapp text-xl"></i>
+          </a>
+          <a href="https://www.youtube.com/channel/CHANNEL_ID" class="text-gray-400 hover:text-yellow-500 transition-colors">
+            <i class="fab fa-youtube text-xl"></i>
+          </a>
+        </div>
+        
+        <div class="text-center md:text-right">
+          <p class="text-gray-500">&copy; 2024 Arunjith Perambra. All rights reserved.</p>
+          <p class="text-gray-500 mt-1">Designed by <a href="https://neuraq.in" class="text-yellow-500 hover:underline">Neuraq Technologies</a></p>
+        </div>
       </div>
-      <p>&copy; 2024 <a href="https://neuraq.in">Neuraq Technologies</a></p>
     </div>
   </footer>
 
-  <!-- AOS Script -->
+  <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init({
-      duration: 1000,
-      once: true,
-    });
-  </script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
